@@ -1,3 +1,10 @@
+img {
+    width: 35%;
+    border: 5px solid skyblue;
+    background-color: aliceblue;
+    margin: auto;
+    padding: 10px;
+}
 header{
     background-color: skyblue;
     padding: 15px;
