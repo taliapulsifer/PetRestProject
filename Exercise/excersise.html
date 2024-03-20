@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Image Toggle</title>
+    </head>
+
+    <body>
+        <img id="toggleImage" src="" alt="Image 1">
+        <button id="toggleButton" onclick="toggleImage()"> Show Image #2</button>
+        <script>
+            var imageToggle = true;
+
+            function toggleImage()
+            {
+                var imgElement = document.getElementById("toggleImage");
+                var buttonElement = document.getElementById("toggleButton");
+
+                if (imageToggle)
+                {
+                    imgElement.src = "https://cottagelife.com/wp-content/uploads/2018/09/shutterstock_522019972-770x477.jpg";
+                    buttonElement.innerHTML = "Show Image #1"
+                }
+                else
+                {
+                    imgElement.src = "https://miro.medium.com/v2/resize:fit:786/format:webp/1*S81O15rjKfG-BFdnNC6-GQ.jpeg";
+                    buttonElement.innerHTML = "Show Image #2"
+                }
+                imageToggle = !imageToggle;
+            }
+
+
+
+        </script>
+    </body>
+</html>

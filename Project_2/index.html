@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PET Adoption</title>
+        <link rel="stlyeSheet" type="text/css" href="styleSheet.css">
+    </head>
+    <body>
+        <h1>PET Adoption</h1>
+
+        <h2>List of Pets</h2>
+        <ul id="petsList"></ul>
+
+        <h2>Pet Details</h2>
+        <div id="petDetails"></div>
+
+        <button onclick="adoptPet()">Adopt Pet</button>
+
+        <form id="updateForm">
+            <label for="species">Species:</label>
+            <input type="text" id="species" name="species">
+        
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed">
+        
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age">
+        
+            <button type="submit">Update Details</button>
+        </form>
+        
+        <form id="addPetForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="species">Species:</label>
+            <input type="text" id="species" name="species" required><br>
+            <label for="breed">Breed:</label>
+            <input type="text" id="breed" name="breed" required><br>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+            <button type="submit">Add Pet</button>
+        </form>
+        
+
+        <script src="index.js"></script>
+    </body>
+</html>
