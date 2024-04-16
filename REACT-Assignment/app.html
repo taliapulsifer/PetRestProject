@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>React Project</title>
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+
+const { useState } = React;
+
+
+function Header() {
+  return (
+    <div>
+      <h1> Talia's Website </h1>
+    </div>
+  );
+}
+
+function Button() { 
+    const [count, setCount] = React.useState(0);
+    function handleClick() {setCount(count + 1);}
+    return  (
+        <button className="rounded-button" onClick={handleClick}>
+            You've clicked this button {count} times!
+        </button>
+    ); 
+}
+
+class CClock extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            time: new Date().toLocaleTimeString()
+    };
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      time: new Date().toLocaleTimeString()
+    });
+  }
+
+  render() {
+    return (
+      <div className="clock-container"> {/* Added container div with class */}
+        <h3>Current Time:</h3>
+        <p>{this.state.time}</p>
+      </div>
+    );
+  }
+} 
+
+class CatFact extends React.Component {
+  constructor(props) { super(props);
+    this.state = { fact: "some random fact" };
+  }
+
+  getfact() { fetch("https://catfact.ninja/fact")
+      .then((response) => response.json())
+      .then((data) => this.setState({fact: data.fact}));
+  }
+
+  componentDidMount() { this.getfact(); }
+
+  render() { return (
+      <div className="CatFact">
+        <h2>Click below for a random fact about cats</h2>
+        <button className="rounded-button" onClick={() => this.getfact()}>Get New Fact</button>
+        <p>{this.state.fact}</p>
+      </div>
+    );
+  }
+}
+    </script>
+
+    <style>
+        html {
+            background-color:#ffedcb;
+        }
+
+        .headercont {
+            text-align: center;
+            border: 10px;
+            border-radius: 5px;
+        }
+
+        .headercont h1{
+            font-size: 40px;
+            color: #61DBFB;
+            text-shadow: -1px -1px 0 #45aaf2, 1px -1px 0 #45aaf2, -1px 1px 0 #45aaf2, 1px 1px 0 #45aaf2;
+        }
+
+        .lcolumncont {
+            text-align: left;
+            padding: 20px;
+        }
+
+        .rcolumncont {
+            text-align: right;
+            padding: 20px;
+        }
+
+        .footercont {
+            text-align: center;
+            background-color: #61DBFB;
+            border: 30px;
+            border-radius: 20px;
+            width: 50%; /* Adjust width as needed */
+            position: fixed; /* Position fixed */
+            bottom: 0; /* Position at the bottom */
+            left: 25%; /* Center horizontally */
+        }
+        .rounded-button {
+            background-color: #61DBFB;
+            border: none;
+            color: white;
+            padding: 15px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    
+        /* Hover effect */
+        .rounded-button:hover {
+            background-color: #45aaf2;
+        }
+
+        .midcolumncont {
+            text-align: center;
+            position: relative; 
+            background-color: #ffedcb;
+        }
+        
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://brandlogos.net/wp-content/uploads/2020/09/react-logo-768x768.png');
+            background-color: #ffedcb;
+            background-size: cover; /* Cover the entire container */
+            background-position: center; /* Center the image */
+            opacity: 0.3; /* Adjust opacity as needed */
+        }
+        
+        .overlay-image {
+            position: relative; /* Make sure the image stays above the background */
+            z-index: 1; /* Ensure the image appears above the background */
+            width: 300px; /* Adjust width as needed */
+        }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="headercont" id="header"></div>
+    <script type="text/babel">
+      const header = ReactDOM.createRoot(document.getElementById('header'));
+      header.render(<Header />);
+    </script>
+
+    <div class="lcolumncont">
+        <div id="buttonLabel">
+            <p> Bored? Click this button below:</p>
+        </div>
+    
+        <div id="Lcolumn"></div>
+        <script type="text/babel">
+        const Lcolumn = ReactDOM.createRoot(document.getElementById('Lcolumn'));
+        Lcolumn.render(<Button />);
+        </script>
+    </div>
+    
+    <div class="midcolumncont">
+        <div class="background-image">
+        <img src="https://brandlogos.net/wp-content/uploads/2020/09/react-logo-768x768.png" width=300px;>
+        </div>
+    </div>
+
+    <div class="rcolumncont">
+        <div id="Rcolumn"></div>
+        <script type="text/babel">
+            const Rcolumn = ReactDOM.render(<CatFact />, document.getElementById('Rcolumn'));
+        </script>
+    </div>
+    
+    <div class="footercont">
+        <div id="Footer"></div>
+        <script type="text/babel">
+            const Footer = ReactDOM.render(<CClock />, document.getElementById('Footer'));
+        </script>
+    </div>
+
+  </body>
+</html>
