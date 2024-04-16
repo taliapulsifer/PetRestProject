@@ -1,2 +1,18 @@
 const express = require('express');
 const app = express();
+
+//Define middlewate to parse incoming request bodies as JSON and hadle CORS:
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+//Define routes
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
+//Start the server and have it listen for incoming requests on a specific port
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log('Server is listening on port ${PORT}');
+});
+
