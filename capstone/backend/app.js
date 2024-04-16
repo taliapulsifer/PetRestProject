@@ -1,4 +1,5 @@
 const express = require('express');
+const mongooseConnection = require('./mongoose')
 const app = express();
 
 //Define middlewate to parse incoming request bodies as JSON and hadle CORS:
@@ -15,4 +16,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log('Server is listening on port ${PORT}');
 });
-
